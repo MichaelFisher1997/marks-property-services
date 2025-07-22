@@ -1,0 +1,36 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { title = "Mark's Property Services", subtitle = "No job too small!" } = Astro.props;
+---
+
+<header class="bg-slate-900 text-white py-4 px-6 shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <a href="/" class="flex items-center">
+        <img 
+          src="/images/logo.png" 
+          alt="Mark's Property Services Logo" 
+          class="h-16 w-auto"
+        />
+      </a>
+      <div class="hidden md:block">
+        <h1 class="text-2xl font-bold text-blue-400">{title}</h1>
+        <p class="text-slate-300 text-sm">{subtitle}</p>
+      </div>
+    </div>
+    <nav class="hidden md:flex space-x-8 items-center">
+      <a href="#services" class="text-slate-300 hover:text-white transition-colors font-medium">Services</a>
+      <a href="#contact" class="text-slate-300 hover:text-white transition-colors font-medium">Contact</a>
+      <a 
+        href="#contact" 
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition-colors"
+      >
+        Contact Us
+      </a>
+    </nav>
+  </div>
+</header>

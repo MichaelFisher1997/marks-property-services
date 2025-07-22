@@ -1,0 +1,34 @@
+---
+import { services } from '../data/services';
+---
+
+<section id="services" class="py-20 px-6 bg-slate-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-slate-900 mb-4">What We Do</h2>
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+        Below you'll find our most common work, if you have an enquiry for anything not listed please 
+        <a href="#contact" class="text-blue-600 hover:text-blue-800 font-semibold">get in touch</a> 
+        for a free quote
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <div class="bg-white rounded-xl p-8 card-shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">{service.icon}</div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+          <p class="text-slate-600 mb-4">{service.description}</p>
+          <ul class="space-y-2">
+            {service.items.map((item) => (
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2">•</span>
+                <span class="text-slate-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

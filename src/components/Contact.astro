@@ -1,0 +1,179 @@
+---
+import Phone from './icons/Phone.astro';
+import Mail from './icons/Mail.astro';
+import MapPin from './icons/MapPin.astro';
+import Clock from './icons/Clock.astro';
+---
+
+<section id="contact" class="py-20 px-6 bg-slate-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-slate-900 mb-4">Contact Us</h2>
+      <p class="text-xl text-slate-600">
+        Get in touch today by calling <a href="tel:07711165923" class="text-blue-600 font-semibold">07711 165923</a> 
+        or use the form below and we will reply by email
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-bold text-slate-900 mb-6">Get in Touch</h3>
+        
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+              <Phone class="w-6 h-6" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-slate-900">Phone</h4>
+              <a href="tel:07711165923" class="text-slate-600 hover:text-blue-600">07711 165923</a>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+              <Mail class="w-6 h-6" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-slate-900">Email</h4>
+              <a href="mailto:info@markspropertyservice.co.uk" class="text-slate-600 hover:text-blue-600">
+                info@markspropertyservice.co.uk
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+              <MapPin class="w-6 h-6" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-slate-900">Service Area</h4>
+              <p class="text-slate-600">Stourbridge and surrounding areas</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+              <Clock class="w-6 h-6" />
+            </div>
+            <div>
+              <h4 class="font-semibold text-slate-900">Hours</h4>
+              <p class="text-slate-600">Monday - Saturday: 8:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-bold text-slate-900 mb-6">Send us a Message</h3>
+        
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Name *</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Your full name"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="your.email@example.com"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-slate-700 mb-2">Phone</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone"
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Your phone number"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Message *</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows={5}
+              required
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Tell us about your project..."
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit"
+            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            id="submit-btn"
+          >
+            Send Message
+          </button>
+
+          <div id="form-status" class="hidden text-center p-4 rounded-lg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formStatus = document.getElementById('form-status') as HTMLDivElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message')
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        formStatus.className = 'bg-green-100 text-green-800 text-center p-4 rounded-lg';
+        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      formStatus.className = 'bg-red-100 text-red-800 text-center p-4 rounded-lg';
+      formStatus.textContent = 'Sorry, there was an error sending your message. Please try again.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+      formStatus.classList.remove('hidden');
+    }
+  });
+</script>

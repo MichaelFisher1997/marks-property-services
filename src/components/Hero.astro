@@ -1,0 +1,66 @@
+---
+import Phone from './icons/Phone.astro';
+import Mail from './icons/Mail.astro';
+import MapPin from './icons/MapPin.astro';
+---
+
+<section class="relative bg-gradient-to-b from-slate-900 to-slate-800 text-white py-24 px-6">
+  <div class="relative z-10 max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        <span class="block">Established over 10 years,</span>
+        <span class="text-blue-400">you're in safe hands with Mark</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-slate-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+        Covering all aspects of building work and DIY for Stourbridge and surrounding areas. 
+        <span class="block mt-2 font-medium">No job is too small!</span>
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a 
+          href="#services" 
+          class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          Find Out More
+        </a>
+        <a 
+          href="#contact" 
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-slate-900 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105"
+        >
+          Get In Touch
+        </a>
+      </div>
+
+      <div class="bg-slate-800 bg-opacity-90 rounded-xl p-6 max-w-5xl mx-auto shadow-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="flex flex-col items-center p-4 rounded-lg bg-slate-800 bg-opacity-50">
+            <div class="flex items-center space-x-3 mb-2">
+              <Phone class="w-6 h-6 text-blue-400" />
+              <span class="text-lg font-medium">Call Us</span>
+            </div>
+            <a href="tel:07711165923" class="text-blue-400 hover:text-blue-300 transition-colors">07711 165923</a>
+          </div>
+          
+          <div class="flex flex-col items-center p-4 rounded-lg bg-slate-800 bg-opacity-50">
+            <div class="flex items-center space-x-3 mb-2">
+              <Mail class="w-6 h-6 text-blue-400" />
+              <span class="text-lg font-medium">Email Us</span>
+            </div>
+            <a href="mailto:info@markspropertyservice.co.uk" class="text-blue-400 hover:text-blue-300 transition-colors text-center">
+              info@markspropertyservice.co.uk
+            </a>
+          </div>
+          
+          <div class="flex flex-col items-center p-4 rounded-lg bg-slate-800 bg-opacity-50">
+            <div class="flex items-center space-x-3 mb-2">
+              <MapPin class="w-6 h-6 text-blue-400" />
+              <span class="text-lg font-medium">Location</span>
+            </div>
+            <span class="text-center">Stourbridge & Surrounding Areas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
