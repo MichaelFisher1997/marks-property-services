@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  marks-property-services:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "4040:4040"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:4040"]
+      timeout: 5s
+      interval: 30s
+      retries: 3
+      start_period: 40s
